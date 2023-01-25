@@ -21,7 +21,6 @@ function HeavyCalculator() {
   }, [number]);
   // number값의 변화가 없다면 이미 메모이제이션 한 값을 재사용
 
-
   return (
     <div>
       <input 

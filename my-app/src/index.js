@@ -17,6 +17,10 @@ import SetStateMerge from './chapter7/7.2/SetStateMerge';
 import EffectContainer from './chapter7/7.3/EffectContainer';
 import TimerContainer from './chapter7/7.3/TimerContainer';
 import HeavyCalculator from './chapter7/7.4/HeavyClaculator';
+import ParentComponent from './chapter7/7.5/ParentComponent';
+import TextInputWithFocusButton from './chapter7/7.6/TextInputWithFocusButton';
+import ComponentVariable from './chapter7/7.6/ComponentVariable';
+import InputContainer from './chapter7/7.8/ex2/InputContainer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -64,7 +68,11 @@ root.render(
   // <FriendStatus />
   // <EffectContainer />
   // <TimerContainer />
-  <HeavyCalculator />
+  // <HeavyCalculator />
+  // <ParentComponent />
+  // <TextInputWithFocusButton />
+  // <ComponentVariable />
+  <InputContainer />
 );
 
 // If you want to start measuring performance in your app, pass a function
