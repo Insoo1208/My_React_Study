@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 function HeavyCalculator() {
   const [number, setNumber] = useState(1);
@@ -13,7 +13,14 @@ function HeavyCalculator() {
     return sum;
   }
 
-  const heavyResult = heavySum(number);
+  // const heavyResult = heavySum(number);
+
+  // useMeMo()를 사용 시
+  const heavyResult = useMemo(() => {
+    return heavySum(number);
+  }, [number]);
+  // number값의 변화가 없다면 이미 메모이제이션 한 값을 재사용
+
 
   return (
     <div>
