@@ -2,11 +2,11 @@ import { useState } from "react";
 import useInput from "./useInput";
 
 function InputContainer() {
-  const [inputValue, handleChange] = useInput('');
-
+  const [inputValue, handleChange, reset] = useInput('');
+  // 데이터를 서버에 보내기 전 작업은 컴포넌트마다 다를 수 있기 때문에
   const handleSubmit = () => {
     alert(inputValue);
-    // setInputValue('');
+    reset();
   };
 
   return (

@@ -5,7 +5,7 @@ const styles = {
     padding: 8,
     display: "flex",
     flexDirection: "row",
-    border: "1px solid grey",
+    border: "1px solid gray",
     borderRadius: 16,
   },
   imageContainer: {},
