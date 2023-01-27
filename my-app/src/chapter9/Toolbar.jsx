@@ -15,7 +15,7 @@ function Toolbar(props) {
   const {isLoggedIn, onClickLogin, onClickLogout} = props;
 
   return (
-    <div style={styles.wrapper}>
+    <div className='red wrapper' style={styles.wrapper}>
     {isLoggedIn
       ? (
         <>

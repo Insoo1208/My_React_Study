@@ -31,6 +31,12 @@ import MailBox from './chapter9/9.3/MailBox';
 import MainPage from './chapter9/9.4/MainPage';
 import LandingPage from './chapter9/LandingPage';
 import MyCalculator from './MyCalculator/MyCalculator';
+import NumberList from './chapter10/10.1/NumberList';
+import AttendanceBook from './chapter10/AttendanceBook';
+import NameForm from './chapter11/11.2/NameForm';
+import EssayForm from './chapter11/11.3/EssayForm';
+import FlavorForm from './chapter11/11.3/FlavorForm';
+import FileInput from './chapter11/11.3/FileInput';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -93,7 +99,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //   <ConfirmButton />
 // );
   
-// 8장 예제
+// 9장 예제
 // const messages = ['React', 'Re: React', 'Re:Re: React'];
 // root.render(
 //   // <Greeting isLoggedIn={true}/>
@@ -103,9 +109,20 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //   <LandingPage />
 // );
 
+// 10장 예제
+// const numbers =[1,2,3,4,5];
+// root.render(
+//   // <NumberList numbers={numbers}/>
+//   // <AttendanceBook />
+// );
+
+// 11장 예제
 root.render(
-  <MyCalculator />
-)
+  // <NameForm />
+  // <EssayForm />
+  // <FlavorForm />
+  <FileInput />
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -5,20 +5,24 @@ const styles = {
     height: 500,
     display: 'flex',
     flexWrap: 'wrap',
+    border: '1px solid black',
   },
   numButton: {
-    width: '25%',
-    height: 100,
+    margin: "2.5%",
+    width: '20%',
+    height: 60,
     backgroundColor: 'white',
   },
   acZero: {
-    width: "50%",
-    height: 100,
+    margin: "2.5%",
+    width: "45%",
+    height: 60,
     backgroundColor: 'white',
   },
   notNum: {
-    width: '25%',
-    height: 100,
+    margin: "2.5%",
+    width: '20%',
+    height: 60,
     backgroundColor: 'skyblue',
   }
 }
