@@ -2,8 +2,9 @@ import { useState } from "react";
 
 function PostDetail(props) {
   const {posts, currentIndex, setPosts} = props;
-  const [modifiedTitle, setModifiedTitle] = useState();
-  const handleChangeTitle = e => setModifiedTitle(e.target.value);
+  const [edit, setEdit] = useState();
+  const handleChangeTitle = e => setEdit(e.target.value);
+
   return (
     <div className="detail">
       <h4>{posts[currentIndex]}</h4>
@@ -18,7 +19,7 @@ function PostDetail(props) {
         const copyPosts = [...posts];
         copyPosts[currentIndex] = `${copyPosts[currentIndex]} - 수정`;
         setPosts(copyPosts);
-      }}>Modify</button>
+      }}>Edit</button>
     </div>
   );
 }

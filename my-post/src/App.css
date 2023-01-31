@@ -28,3 +28,23 @@ padding: 0 20px;
   background-color: #f9f9f9;
   border-radius: 6px;
 }
+
+.upload-post {
+  margin-top: 20px;
+  padding: 10px 20px 20px;
+  background-color: #c8b2d6;
+  border-radius: 6px;
+}
+
+.input-box {
+  margin-left: 5px;
+  background-color: #eaeaea;
+  border: 1px solid black;
+  outline: none;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

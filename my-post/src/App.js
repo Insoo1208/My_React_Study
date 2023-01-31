@@ -9,6 +9,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showPostDetail, setShowPostDetail] = useState(false);
   const [likeCount, setLikeCount] = useState([0, 0, 0]);
+  const [newTitle, setNewTitle] = useState('');
 
   return (
     <>
@@ -26,26 +27,46 @@ function App() {
       <div className='inner'>
         {/* 포스트 목록 */}
         {posts.map((post, index) => (
-            <div key={index} className='list' onClick={() => {
-              setShowPostDetail(true);
-              setCurrentIndex(index);
-              }}>
-              <h4>{post}</h4>
-              <p>Jan 20, 2023</p>
-              <p>by Goni</p>
-              <hr />
-              
-              <span onClick={() => {
+          <div key={index} className='list' onClick={() => {
+            setShowPostDetail(true);
+            setCurrentIndex(index);
+            }}>
+            <h4>{post}</h4>
+            <p>Jan 20, 2023</p>
+            <p>by Goni</p>
+            <hr />
+
+            <div className='toolbar'>
+              <span onClick={e => {
+                // (버그 수정) 현재는 좋아요 버튼 누를 때 포스트 상세 보기까지 같이 클릭됨
+                // 부모-자식 관계에 있을 때 이벤트 버블링 발생함
+                e.stopPropagation(); // 상위 요소로 전파되는 이벤트 버블링을 막고 싶을 때 사용
                 const copyLikeCount = [...likeCount];
                 copyLikeCount[index]++;
                 setLikeCount(copyLikeCount);
               }}>💜 {likeCount[index] || null}</span>
+
+              <span style={{fontSize: 28}} onClick={e => {
+                e.stopPropagation();
+                const curIdx = index;
+                setPosts(posts.filter((post, index) => curIdx !== index));
+                setLikeCount(likeCount.filter((count, index) => curIdx !== index));
+              }}>🗑</span>
             </div>
+          </div>
         ))}
+
+        {/* 새로운 포스트 등록 */}
+        <input type="text" value={newTitle} onChange={e => setNewTitle(e.target.value)}/>
+        <button style={{marginLeft: 5}} type='button' onClick={() => {
+          setPosts([newTitle, ...posts]);
+          setLikeCount([0, ...likeCount]);
+          setNewTitle('');
+        }}>Upload Post</button>
+
         {showPostDetail && (
           <div className="detail">
             <PostDetail posts={posts} currentIndex={currentIndex} setPosts={setPosts}/>
-            <button onClick={() => setShowPostDetail(false)}>Hide</button>
           </div>
         )}
       </div>
