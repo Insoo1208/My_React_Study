@@ -37,7 +37,7 @@ function PostDetail(props) {
         Edit Title : 
         <input style={{ margin: '0 5px' }} type="text" value={editTitle} onChange={e => setEditTitle(e.target.value)}/>
       </label>
-      <button type="button" onClick={handleEditTitle}>Modify</button>
+      <button type="button" onClick={handleEditTitle} disabled={!(editTitle ?? false)}>Submit</button>
     </div>
   );
 }

@@ -32,7 +32,7 @@ function AppUsingObject() {
 
       <div className='inner'>
         {/* 포스트 목록 */}
-        {posts.map((post) => (
+        {posts.map(post => (
           <div key={post.id} className='list' onClick={() => setShowPostDetail({id: post.id, isTrue: true})}>
             <h4>{post.title}</h4>
             <p>{post.date}</p>
@@ -78,7 +78,7 @@ function AppUsingObject() {
             setPosts([{...newPost, id:`${countPost}`}, ...posts]);
             setNewPost({title: '', date: 'Jan 1, 2023', author: 'Insoo', id: '', likeCount: 0});
             setCountPost(countPost => countPost + 1);
-          }}>Upload</button>
+          }} disabled={!(newPost.title ?? false)}>Upload</button>
         </div>
       </div>
     </>
@@ -86,3 +86,5 @@ function AppUsingObject() {
 }
 
 export default AppUsingObject;
+
+// 1. 컴포넌트 추출
