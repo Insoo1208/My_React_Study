@@ -41,3 +41,10 @@ padding: 0 20px;
   justify-content: space-between;
   align-items: center;
 }
+
+.upload-post {
+  margin-top: 20px;
+  padding: 10px 20px 20px;
+  background-color: #c8b2d6;
+  border-radius: 6;
+}

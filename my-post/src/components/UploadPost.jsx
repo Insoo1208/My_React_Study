@@ -1,23 +1,5 @@
-const sytles = {
-  uploadPost: {
-    marginTop: 20,
-    padding: '10px 20px 20px',
-    backgroundColor: '#c8b2d6',
-    borderRadius: 6,
-  },
-  wrapper: {
-
-  },
-  inputBox: {
-    marginLeft: 5,
-    backgroundColor: '#eaeaea',
-    border: '1px solid black',
-    outline: 'none',
-  }
-};
-
 function UploadPost(props) {
-  const [newPost, setNewPost, posts, setPosts, countPost, setCountPost] = props;
+  const {newPost, setNewPost, posts, setPosts, countPost, setCountPost} = props;
 
   return (
     <div className="upload-post">

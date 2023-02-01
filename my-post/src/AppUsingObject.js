@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import PostDetailUsingObject from './components/PostDetailUsingObject';
+import UploadPost from './components/UploadPost';
 
 function AppUsingObject() {
   const [posts, setPosts] = useState([
@@ -54,32 +55,14 @@ function AppUsingObject() {
           </div>
         )}
 
-        <div className='upload-post'>
-          Upload New Post..
-          <br />
-          <br />
-          <label>
-            Title: 
-            <input className='input-box' type="text" value={newPost.title} onChange={e => setNewPost({...newPost, title: e.target.value})}/>
-          </label>
-          <br />
-          <label>
-            Date: 
-            <input className='input-box' type="text" value={newPost.date} onChange={e => setNewPost({...newPost, date: e.target.value})}/>
-          </label>
-          <br />
-          <label>
-            author: 
-            <input className='input-box' type="text" value={newPost.author} onChange={e => setNewPost({...newPost, author: e.target.value})}/>
-          </label>
-          <br />
-          <br />
-          <button type='button' onClick={() => {
-            setPosts([{...newPost, id:`${countPost}`}, ...posts]);
-            setNewPost({title: '', date: 'Jan 1, 2023', author: 'Insoo', id: '', likeCount: 0});
-            setCountPost(countPost => countPost + 1);
-          }} disabled={!(newPost.title ?? false)}>Upload</button>
-        </div>
+        <UploadPost
+          newPost={newPost}
+          setNewPost={setNewPost}
+          posts={posts}
+          setPosts={setPosts}
+          countPost={countPost}
+          setCountPost={setCountPost}
+        />
       </div>
     </>
   );
