@@ -1,34 +1,25 @@
 import { useState } from "react";
 
 function PostDetail(props) {
-  const {posts, showPostDetail, setPosts} = props;
+  const {posts : {title, date, author}, showPostDetail, setPosts} = props;
   const [editTitle, setEditTitle] = useState('');
-  const targetPost = posts.reduce((acc, post) => {
-    if (post.id === showPostDetail.id) acc = {...post};
-    return acc;
-  });
+  
   const handleEditTitle = () => {
-    const copyPosts = [...posts].map(post => {
-      if (showPostDetail.id === post.id) post.title = editTitle;
-      return post;
-    });
-    setEditTitle('');
+    const copyPosts =  posts.map(post => showPostDetail.id === post.id ? { ...post, title: editTitle } : post);
     setPosts(copyPosts);
+    setEditTitle('');
   };
 
   const handleLikeCount = () => {
-    const copyPosts = [...posts].map(post => {
-      if (showPostDetail.id === post.id) post.likeCount++;
-      return post;
-    });
+    const copyPosts = posts.map(post => showPostDetail.id === post.id ? {...post, likeCount: post.likeCount++} : post);
     setPosts(copyPosts);
   };
 
   return (
     <div className="detail">
-      <h4>{targetPost.title}</h4>
-      <p>Date: {targetPost.date}</p>
-      <p>Author: {targetPost.author}</p>
+      <h4>{title}</h4>
+      <p>Date: {date}</p>
+      <p>Author: {author}</p>
       <p>contents...</p>
       <button type="button" onClick={handleLikeCount}>Like 💜</button>
       <br />
