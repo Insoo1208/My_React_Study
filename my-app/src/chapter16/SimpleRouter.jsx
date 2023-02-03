@@ -4,6 +4,7 @@ import GamePage from './GamePage';
 import HotGamePage from './HotGamePage';
 import MainPage from './MainPage';
 import NewGamePage from './NewGamePage';
+import NoMatchPage from './NoMatchPage';
 import PlacePage from './PlacePage';
 
 function SimpleRouter(props) {
@@ -26,7 +27,8 @@ function SimpleRouter(props) {
           <Route path='hot' element={<HotGamePage />} />
           <Route path='new' element={<NewGamePage />} />
         </Route>
-
+        {/* 경로에서 *의 의미는 match anything */}
+        <Route path='*' element={<NoMatchPage />}/>
       </Routes>
     </BrowserRouter>
   );

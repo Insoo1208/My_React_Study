@@ -1,7 +1,8 @@
 function PostList(props) {
+  const { posts } = props;
   return (
     <div>
-      <PostItem />
+      {posts.map(post => <PostItem key={post.id} post={post}/>)}
     </div>
   );
 }

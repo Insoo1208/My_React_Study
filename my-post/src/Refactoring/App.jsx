@@ -1,5 +1,9 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reset from "styled-reset";
+import MainPage from "./Components/MainPage";
+import NewPost from "./Components/NewPost";
+import PostDetail from "./Components/PostDetail";
 
 const GlobalStyle = createGlobalStyle`
   // reset Css
@@ -43,7 +47,7 @@ const SubMenuList = styled.ul`
 
 function App(props) {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
       <HeaderDark>
         <Title>Insoo's Blog</Title>
@@ -54,8 +58,12 @@ function App(props) {
           </SubMenuList>
         </SubMenu>
       </HeaderDark>
-      
-    </>
+      <Routes>
+        <Route path='/' element={<MainPage />}/>
+        <Route path='/posts/:postId' element={<PostDetail />} />
+        <Route path='/upload-post' element={<NewPost />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

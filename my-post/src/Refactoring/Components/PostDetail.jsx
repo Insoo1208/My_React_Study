@@ -1,8 +1,9 @@
 function PostDetail(props) {
+  const {  } = props;
   return (
-    <div>
+    <>
       
-    </div>
+    </>
   );
 }
 
