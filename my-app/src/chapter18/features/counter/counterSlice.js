@@ -28,14 +28,14 @@ const counterSlice = createSlice({
     decrement: state => {
       state.value--;
     },
-    incrementByAmount: (state, action) => { // 두번째 파라미터: action 객체 = { type: 발생한 action의 타입, payload: 전달 데이터 }
-      console.log(action);
-      state.value += action.payload;
+    // incrementByAmount: (state, action) => { // 두번째 파라미터: action 객체 = { type: 발생한 action의 타입, payload: 전달 데이터 }
+    //   state.value += action.payload;
+    // },
+    incrementByAmount: (state, { payload: { incrementValue } }) => { // 두번째 파라미터: action 객체 = { type: 발생한 action의 타입, payload: 전달 데이터 }
+      state.value += incrementValue;
     },
   }
 });
-
-console.log(counterSlice);
 
 // 각 reducer에 대한 액션 생성 함수들이 객체형태로 들어있음
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;

@@ -26,7 +26,7 @@ function Counter() {
       </div>
       <div>
         <input type="number" value={incrementAmount} onChange={e => setIncrementAmount(e.target.value)}/>
-        <button type="button" onClick={() => dispatch(incrementByAmount(incrementValue))}>Add</button>
+        <button type="button" onClick={() => dispatch(incrementByAmount({incrementValue}))}>Add</button>
       </div>
     </div>
   );
