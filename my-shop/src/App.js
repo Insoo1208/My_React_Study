@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Header from './pages/Header';
 import Main from './pages/Main';
+import { Provider } from 'react-redux';
+import { store } from "./app/store";
 
 
 
@@ -37,12 +39,14 @@ function App() {
       {/* <button className="btn btn-primary" type="button">primary</button> */}
 
       {/* 헤더 영역: 상단 네비게이션 바 */}
-      <Routes>
-        <Route path='/' element={<Header />}>
-          {/* index: index route(여기서는 defalut child route) */}
-          <Route index element={<Main />} />
-        </Route>
-      </Routes>
+      <Provider store={store}>
+        <Routes>
+          <Route path='/' element={<Header />}>
+            {/* index: index route(여기서는 defalut child route) */}
+            <Route index element={<Main />} />
+          </Route>
+        </Routes>
+      </Provider>
     </BrowserRouter>
   );
 }
