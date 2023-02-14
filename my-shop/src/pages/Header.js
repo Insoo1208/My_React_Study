@@ -11,7 +11,7 @@ function Header() {
     <header>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand onClick={() => navigate('/')}>Insoo's Shop</Navbar.Brand>
+          <Navbar.Brand className='cursor-pointer' onClick={() => navigate('/')}>Insoo's Shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link onClick={() => navigate('/')} >Home</Nav.Link>
             <Nav.Link onClick={() => navigate('/cart')}>Cart</Nav.Link>

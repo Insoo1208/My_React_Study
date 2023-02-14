@@ -2,12 +2,14 @@ import { createGlobalStyle } from 'styled-components';
 // bootstrap CSS
 // bootstrap: 레이아웃을 복사, 붙여넣기 식으로 편하게 개발 가능한 CSS,JS 라이브러리
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.min.css'; // React-toastify
 // import Button from 'react-bootstrap/Button';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import Header from './pages/Header';
 import Main from './pages/Main';
-import { Provider } from 'react-redux';
-import { store } from "./app/store";
+import ProductDetail from './pages/ProductDetail';
 
 
 
@@ -32,22 +34,28 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalStyle />
-      {/* bootstrap practice */}
-      {/* <Button variant="primary">Primary</Button> */}
-      {/* <button className="btn btn-primary" type="button">primary</button> */}
+  <BrowserRouter>
+    <GlobalStyle />
+    {/* bootstrap practice */}
+    {/* <Button variant="primary">Primary</Button> */}
+    {/* <button className="btn btn-primary" type="button">primary</button> */}
 
-      {/* 헤더 영역: 상단 네비게이션 바 */}
-      <Provider store={store}>
-        <Routes>
-          <Route path='/' element={<Header />}>
-            {/* index: index route(여기서는 defalut child route) */}
-            <Route index element={<Main />} />
-          </Route>
-        </Routes>
-      </Provider>
-    </BrowserRouter>
+    {/* 헤더 영역: 상단 네비게이션 바 */}
+    <Routes>
+      <Route path='/' element={<Header />}>
+        {/* index: index route(여기서는 defalut child route) */}
+        <Route index element={<Main />} />
+        {/* /detail/1 로 접속하면 productId에 1이 담김 */}
+        <Route path='/detail/:productId' element={<ProductDetail />}/>
+      </Route>
+    </Routes>
+    <ToastContainer
+      position='bottom-right'
+      autoClose={3000}
+      pauseOnFocusLoss={false}
+      theme='dark'
+    />
+  </BrowserRouter>
   );
 }
 

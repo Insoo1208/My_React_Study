@@ -1,30 +1,31 @@
 import styled from "styled-components";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, selectProduct } from "../features/product/productSlice";
+import { getAllProducts, selectProduct, getMoreProducts } from "../features/product/productSlice";
 import { useEffect } from "react";
+import axios from "axios";
 
 // 서버에서 가져온 데이터라고 가정
 import data from '../data.json';
 
 // 리액트(JS)에서 이미지 파일 import
 import YonexImg from "../images/yonex.jpg";
+import ProductListItem from "../components/ProductListItem";
+import { Button } from "react-bootstrap";
 
 const MainBackground = styled.div`
   height: 500px;
   background-image: url(${YonexImg});
   background-repeat: no-repeat;
-  background-size: cover;
   background-position: center;
-
+  background-size: contain;
 `;
 
 function Main() {
-  const product = useSelector(selectProduct);
-
   const dispatch = useDispatch();
+  const productList = useSelector(selectProduct);
+
   // 처음 마운트 됐을 때 서버에 상품 목록 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 저장
   useEffect(() => {
@@ -44,33 +45,29 @@ function Main() {
       <section>
         <Container>
           <Row>
-            {product.map(item => (
-              <Col key={item.id} md={4}>
-                <img src={item.imagePath} alt={item.title} width="80%" />
-                <h4>{item.title}</h4>
-                <p>{item.price}</p>
-              </Col>
-            ))}
-            {/* <Col md={4}>
-              <img src="https://www.yonexmall.com/shop/data/goods/1645767865278s0.png" alt="productThumbnail" width="80%" />
-              <h4>Product Name</h4>
-              <p>price</p>
-            </Col>
-            <Col md={4}>
-              <img src="https://www.yonexmall.com/shop/data/goods/1659329583483s0.png" alt="productThumbnail" width="80%" />
-              <h4>Product Name</h4>
-              <p>price</p>
-            </Col>
-            <Col md={4}>
-              <img src="https://www.yonexmall.com/shop/data/goods/1667190100104s0.png" alt="productThumbnail" width="80%" />
-              <h4>Product Name</h4>
-              <p>price</p>
-            </Col> */}
+            {productList.map(product => <ProductListItem key={product.id} product={product} />)}
           </Row>
         </Container>
+
+        {/* More */}
+        <Button variant="outline-info" className="mb-4"
+          onClick={() => {
+            axios.get('http://localhost:4000/products')
+              .then(response => {
+                dispatch(getMoreProducts(response.data));
+              })
+              .catch(console.error)
+
+          }}
+        >More</Button>
       </section>
     </>
   );
-}
+};
 
 export default Main;
+
+// json-server
+// 실무와 비슷한 느낌으로 하기 위해 가짜 API 서버를 만듦
+// json 파일 하나만 있으면 연습용 서버를 쉽게 구성 가능
+// npx json-server ./src/data2.json --port 4000
