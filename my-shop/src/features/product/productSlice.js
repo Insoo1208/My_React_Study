@@ -23,6 +23,7 @@ const productSlice = createSlice({
 });
 
 export const { getAllProducts, getProductById, getMoreProducts } = productSlice.actions;
+export const selectAllProduct = state => state.product;
 export const selectProduct = state => state.product.productList;
 export const selectedProduct = state => state.product.selectedProduct;
 export default productSlice.reducer;

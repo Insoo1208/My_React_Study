@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import styled, { keyframes } from 'styled-components';
 
 // 서버에서 받아온 데이터라고 가정
-import data from "../data.json";
-import { getProductById, selectedProduct } from '../features/product/productSlice';
+// import data from "../data.json";
+import { getProductById, selectAllProduct, selectedProduct } from '../features/product/productSlice';
 
 const StyledCol = styled(Col)`
   display: flex;
@@ -32,6 +32,7 @@ function ProductDetail() {
   // useParams() 사용하여 productId 가져오기
   const { productId } = useParams();
   const dispatch = useDispatch();
+  const data = useSelector(selectAllProduct);
   const product = useSelector(selectedProduct);
   const [show, setShow] = useState(true);
   const [orderCount, setOrderCount] = useState(1);
