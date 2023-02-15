@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts, selectProduct, getMoreProducts } from "../features/product/productSlice";
+import { getAllProducts, selectProduct, getMoreProducts, getMoreProductAsync, selectStatus } from "../features/product/productSlice";
 import { useEffect } from "react";
 import axios from "axios";
 
@@ -13,6 +13,7 @@ import data from '../data.json';
 import YonexImg from "../images/yonex.jpg";
 import ProductListItem from "../components/ProductListItem";
 import { Button } from "react-bootstrap";
+import { getProducts } from "../api/productAPI";
 
 const MainBackground = styled.div`
   height: 500px;
@@ -26,6 +27,9 @@ function Main() {
   const dispatch = useDispatch();
   const productList = useSelector(selectProduct);
 
+  // 로딩 만들기 추천: react-spinner, Lottie Files
+  const status = useSelector(selectStatus);
+
   // 처음 마운트 됐을 때 서버에 상품 목록 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 저장
   useEffect(() => {
@@ -33,6 +37,12 @@ function Main() {
     // ... api call ...
     dispatch(getAllProducts(data));
   }, []);
+
+  const handleGetMoreProducts = async () => {
+    const result = await getProducts();
+    if (!result) return;
+    dispatch(getMoreProducts(result));
+  }
 
   return (
     <>
@@ -50,16 +60,23 @@ function Main() {
         </Container>
 
         {/* More */}
-        <Button variant="outline-info" className="mb-4"
+        {/* <Button variant="outline-info" className="mb-4"
           onClick={() => {
             axios.get('http://localhost:4000/products')
               .then(response => {
                 dispatch(getMoreProducts(response.data));
               })
-              .catch(console.error)
-
+              .catch(console.error);
           }}
+        >More</Button> */}
+        {/* <Button variant="outline-info" className="mb-4"
+          onClick={handleGetMoreProducts}
+        >More</Button> */}
+        <Button variant="outline-info" className="mb-4"
+          onClick={() => dispatch(getMoreProductAsync())}
         >More</Button>
+        {/* 위 HTTP 요청 코드를 함수로 만들어서 api 폴더로 추출하고 async/await로 바꾸기 */}
+        {/* thunk를 이용한 비동기 작업 처리하기 */}
       </section>
     </>
   );

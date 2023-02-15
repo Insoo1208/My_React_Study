@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import Header from './pages/Header';
 import Main from './pages/Main';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
 
 
 
@@ -47,6 +48,8 @@ function App() {
         <Route index element={<Main />} />
         {/* /detail/1 로 접속하면 productId에 1이 담김 */}
         <Route path='/detail/:productId' element={<ProductDetail />}/>
+        <Route path='/cart' element={<Cart />} />
+        <Route path='*' element={<div>404 Not Found</div>} />
       </Route>
     </Routes>
     <ToastContainer
