@@ -3,18 +3,18 @@ import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   cartList: [
-    {
-      id: "1",
-      title: "Arcsaber 11 Pro",
-      count: 2,
-      price: 299000,
-    },
-    {
-      id: "3",
-      title: "Aerus Z",
-      count: 1,
-      price: 199000,
-    }
+    // {
+    //   id: "1",
+    //   title: "Arcsaber 11 Pro",
+    //   count: 2,
+    //   price: 299000,
+    // },
+    // {
+    //   id: "3",
+    //   title: "Aerus Z",
+    //   count: 1,
+    //   price: 199000,
+    // }
   ]
 };
 
@@ -34,10 +34,14 @@ const cartSlice = createSlice({
       const target = state.cartList.find(cart => cart.id === item.id);
       if (target) target.count += item.count;
       else state.cartList.push(item);
+    },
+    deleteCart: (state, { payload: id }) => {
+      const targetIndex = state.cartList.findIndex(cart => cart.id === id);
+      state.cartList.splice(targetIndex, 1);
     }
   }
 });
 
-export const { increaseCount, decreaseCount, addCart } = cartSlice.actions;
+export const { increaseCount, decreaseCount, addCart, deleteCart } = cartSlice.actions;
 export const selectCartList = state => state.cart.cartList;
 export default cartSlice.reducer;

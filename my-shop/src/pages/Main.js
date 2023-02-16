@@ -14,6 +14,7 @@ import YonexImg from "../images/yonex.jpg";
 import ProductListItem from "../components/ProductListItem";
 import { Button } from "react-bootstrap";
 import { getProducts } from "../api/productAPI";
+import LatestView from "../components/LatestView";
 
 const MainBackground = styled.div`
   height: 500px;
@@ -78,6 +79,7 @@ function Main() {
         {/* 위 HTTP 요청 코드를 함수로 만들어서 api 폴더로 추출하고 async/await로 바꾸기 */}
         {/* thunk를 이용한 비동기 작업 처리하기 */}
       </section>
+      <LatestView />
     </>
   );
 };

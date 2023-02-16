@@ -11,6 +11,9 @@ function ProductListItem(props) {
   const { product: { id, title, price, imagePath } } = props;
   const navigate = useNavigate();
 
+  // 숫자 포맷 적용
+  const formatter = new Intl.NumberFormat('ko-KR');
+
   return (
     <StyledCol md={4}>
       <img src={imagePath} alt={title} width="80%"
@@ -20,7 +23,7 @@ function ProductListItem(props) {
         }}
       />
       <h4>{title}</h4>
-      <p>{price} &#8361;</p>
+      <p>{formatter.format(price)} &#8361;</p>
     </StyledCol>
   );
 };

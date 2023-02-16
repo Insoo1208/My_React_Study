@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Container, Col, Row, Button, Alert, Form, Nav } from 'react-bootstrap';
+import { Container, Col, Row, Button, Alert, Form, Nav, Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled, { keyframes } from 'styled-components';
 import TabContents from '../components/TabContents';
@@ -34,6 +34,7 @@ function ProductDetail() {
   // useParams() 사용하여 productId 가져오기
   const { productId } = useParams();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const data = useSelector(selectProduct);
@@ -42,6 +43,11 @@ function ProductDetail() {
   const [show, setShow] = useState(true);
   const [orderCount, setOrderCount] = useState(1);
   const [showTabIndex, setShowTabIndex] = useState(0);
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
+
 
   // 처음 마운트 됐을 때 서버에 상품 id를 이용하여 데이터를 요청하고 그 결과를 리덕스 스토어에 저장
   useEffect(() => {
@@ -49,6 +55,15 @@ function ProductDetail() {
     // ... api call ...
     const foundProduct = data.find(product => product.id === productId);
     dispatch(getProductById(foundProduct));
+
+    // 상세 페이지에 들어오면 해당 상품의 id를 localStorage에 추가
+    let latestViewed = JSON.parse(localStorage.getItem('latestViewed')) ?? [];
+    // id를 넣기 전에 기존 배열에 존재하는 검사하거나 
+    // 일단 넣고 Set 자료형을 이용하여 중복 제거
+    latestViewed.push(productId);
+    latestViewed = [...new Set(latestViewed)];
+    localStorage.setItem('latestViewed', JSON.stringify(latestViewed));
+
     const timeout = setTimeout(() => {
       setShow(false);
     }, 3000);
@@ -87,12 +102,22 @@ function ProductDetail() {
           <StyledCol md={6}>
             <h4>{product.title}</h4>
             <p>{product.content}</p>
-            <p>{product.price} &#8361;</p>
+            <p>{product.price.toLocaleString()} &#8361;</p>
             <Col md={4} className="mx-auto mb-3">
               <Form.Control type="text" value={orderCount} onChange={handleChangeOrderCount} />
             </Col>
             <Button variant="outline-primary">Order</Button>
-            <Button variant='outline-dark' onClick={() => {dispatch(addCart({id: product.id, title: product.title, price: product.price, count: orderCount}))}}>Cart</Button>
+            <Button variant='outline-dark'
+              onClick={() => {
+                handleShow();
+                dispatch(addCart({
+                  id: product.id,
+                  title: product.title,
+                  price: product.price,
+                  count: orderCount
+                }));
+              }}
+            >Cart</Button> 
           </StyledCol>
         </Row>
 
@@ -146,6 +171,24 @@ function ProductDetail() {
             3: <div> Tab Content 4 </div>,
           }[showTabIndex]
         }
+
+        {/* 장바구니 담기 모달 */}
+        <Modal show={modalShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Insoo's Shop</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            장바구니에 상품을 담았습니다.<br />장바구니로 이동하시겠습니까?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              No
+            </Button>
+            <Button variant="primary" onClick={() => navigate('/cart')}>
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal>
 
       </Container>
     </>

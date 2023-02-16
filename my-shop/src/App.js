@@ -11,6 +11,7 @@ import Header from './pages/Header';
 import Main from './pages/Main';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import LatestView from './components/LatestView';
 
 
 
@@ -30,6 +31,12 @@ const GlobalStyle = createGlobalStyle`
 
   .cursor-pointer {
     cursor: pointer;
+  }
+
+  .text-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
