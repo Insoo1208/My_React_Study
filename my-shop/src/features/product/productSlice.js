@@ -45,7 +45,7 @@ const productSlice = createSlice({
       })
       .addCase(getMoreProductAsync.fulfilled, (state, action) => { // fulfilled 상태일 때 동작할 리듀서
         state.status = 'idle'; // complete, success 등
-        state.productList.push(...action.payload);
+        state.productList = [...action.payload];
       })
       .addCase(getMoreProductAsync.rejected, state => { // rejective 상태일 때 동작할 리듀서
         state.status = 'fail';

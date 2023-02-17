@@ -42,30 +42,30 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-  <BrowserRouter>
-    <GlobalStyle />
-    {/* bootstrap practice */}
-    {/* <Button variant="primary">Primary</Button> */}
-    {/* <button className="btn btn-primary" type="button">primary</button> */}
+    <BrowserRouter>
+      <GlobalStyle />
+      {/* bootstrap practice */}
+      {/* <Button variant="primary">Primary</Button> */}
+      {/* <button className="btn btn-primary" type="button">primary</button> */}
 
-    {/* 헤더 영역: 상단 네비게이션 바 */}
-    <Routes>
-      <Route path='/' element={<Header />}>
-        {/* index: index route(여기서는 defalut child route) */}
-        <Route index element={<Main />} />
-        {/* /detail/1 로 접속하면 productId에 1이 담김 */}
-        <Route path='/detail/:productId' element={<ProductDetail />}/>
-        <Route path='/cart' element={<Cart />} />
-        <Route path='*' element={<div>404 Not Found</div>} />
-      </Route>
-    </Routes>
-    <ToastContainer
-      position='bottom-right'
-      autoClose={2500}
-      pauseOnFocusLoss={false}
-      theme='dark'
-    />
-  </BrowserRouter>
+      {/* 헤더 영역: 상단 네비게이션 바 */}
+      <Routes>
+        <Route path='/' element={<Header />}>
+          {/* index: index route(여기서는 defalut child route) */}
+          <Route index element={<Main />} />
+          {/* /detail/1 로 접속하면 productId에 1이 담김 */}
+          <Route path='/detail/:productId' element={<ProductDetail />}/>
+          <Route path='/cart' element={<Cart />} />
+          <Route path='*' element={<div>404 Not Found</div>} />
+        </Route>
+      </Routes>
+      <ToastContainer
+        position='bottom-right'
+        autoClose={2500}
+        pauseOnFocusLoss={false}
+        theme='dark'
+      />
+    </BrowserRouter>
   );
 }
 

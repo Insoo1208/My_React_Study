@@ -4,7 +4,8 @@ import axios from "axios";
 // 가독성도 좋고 여러 곳에서 재사용 가능
 export const getProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:4000/products');
+    // const response = await axios.get('http://localhost:4000/products');
+    const response = await axios.get('https://my-json-server.typicode.com/ChaJaeKyoung/db-store/products');
     // status가 200(OK)일 때만 리턴
     if (response.status === 200) return response.data;
     else throw new Error(`api error: ${response.status} ${response.statusText}`);
