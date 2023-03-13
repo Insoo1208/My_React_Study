@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const hello = val => 'Hello ' + val;
+    console.log(hello('insoo'));
+
+    const getFavoriteMovie = () => ({
+      name: 'Inception',
+      year: '2010',
+      director: 'Nolan',
+      rating: 9.6
+    });
+
+    console.log(getFavoriteMovie());
+
+    const name = 'JH Kim';
+    const age = 30;
+    const hobby = 'minton';
+    // const greeting = 'Hello my name is ' + name + '. I\'m ' + age + ' years old. My hobby is ' + hobby + '.';
+
+    const greeting = `Hello my name is ${name}. i\'m ${age} years old. My hobby is ${hobby}.`;
+
+    const action = {
+      type: 'action/name',
+      payload: {
+        id: '1',
+        title: '메인 화면 구성하기',
+        content: '메인 이미지와 아이템 목록 만들기',
+        done: true
+      }
+    };
+
+    const { payload : { id, title, content, done } } = action;
+    console.log(id, title, content, done);
+
+    const person = {
+      name: 'JH Kim',
+      job: 'teacher',
+      education: { // optional
+        high_school: { /* ... */ }, // optional
+        university: { // optional
+          name: 'Incheon Hawaii',
+          major: 'ICE',
+        }
+      }
+    };
+
+    // 옵셔널 체이닝 미사용시
+    let universityMajor;
+    if (person.education &&
+        person.education.university) {
+      universityMajor = person.education.university.major;
+    }
+    console.log(universityMajor);
+
+    universityMajor = person.education?.university?.major;
+    console.log(universityMajor);
+  </script>
+</body>
+</html>

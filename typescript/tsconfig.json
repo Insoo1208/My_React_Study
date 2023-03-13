@@ -1,0 +1,27 @@
+// 여기엔 타입스크립트 .ts파일들을 .js파일로 변환할 때 어떻게 변환할 것인지 세부 설정이 가능
+{
+  "compilerOptions": { // ts -> js 컴파일 시 옵션 설정
+    "target": "ES6", // 호완성을 생각한다면 ES5, 신문법을 쓰려면 ES6 이후
+    "module": "ESNext", // import 문법 사용에 대한 설정
+
+    // 유용한 추가 옵션들
+    "strictNullChecks": true,
+    // 변수를 조작하기 전에 이게 null인지 아닌지 캐치를 할 수 있음
+    // 예: HTML 조작할 때 selector로 찾으면 null 관련 오류를 확인할 때 사용
+    "noImplicitAny": true, // any 타입 금지 여부
+    // 기존 JS 프로젝트를 TS로 마이그레이션하는 경우에는 false 사용
+  }
+}
+
+// "target"은 TS파일을 어떤 버전의 JS로 바꿔줄지 정하는 부분
+// es5로 세팅해놓으면 es5차 버전 JS로 컴파일 해줌
+// 신버전을 원하면 es6, esnext 이런 것도 입력 가능
+
+// "module"은 JS파일간 import문법을 구현할 때 어떤 문법을 쓸지 정하는 곳
+// commonjs는 require()문법 사용
+// es2015, esnext는 import문법 사용
+
+// 정리: 어느정도 호환성을 원하면 es5, commonjs로 쓰는 것이 일반적(옛날에 IE 쓰던 시절)
+// 신버전 JS에서만 표현 가능한 문법들이 있는데 그런 것들은 esnext 등으로 버전을 올려줘야 사용 가능
+
+// 다른 옵션은 https://www.typescriptlang.org/tsconfig 에서 구경 가능합니다.
