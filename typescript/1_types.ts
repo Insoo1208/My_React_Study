@@ -145,3 +145,24 @@ let unionObject: { name: string | number } = { name: 'Kim' };
 // 선언과 동시에 초기화 시 타입 지정은 자동으로 됨
 let value = 123;
 // value = '123'; // error
+
+// Quiz
+// Q4. 다음 변수 4개에 타입을 지정해보세요.
+let userName: string = 'Kim';
+let userAge: number | undefined = undefined;
+let married: boolean = false; 
+let userInfo: (string | number | boolean | undefined)[] = [userName, userAge, married];
+// 단, userAge 변수엔 undefined 말고 숫자도 들어올 수 있음
+
+
+// Q5. frontClass라는 변수에 타입을 지정해보세요.
+let frontClass: { subject: (string | boolean)[], score: number[], teacher: string, student: string | string[] } = {
+  subject: ['html', 'css', 'js', 'react'],
+  score: [100, 95, 85, 90],
+  teacher: 'Kim',
+  student: 'Lee'
+};
+frontClass.subject[5] = false;
+frontClass.student = ['Lee', 'Park'];
+// 타입 지정을 안해주면 터미널에 에러 발생
+// 에러가 안나게 frontClass라는 변수에 타입 지정
