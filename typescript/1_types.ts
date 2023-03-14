@@ -146,6 +146,7 @@ let unionObject: { name: string | number } = { name: 'Kim' };
 let value = 123;
 // value = '123'; // error
 
+
 // Quiz
 // Q4. 다음 변수 4개에 타입을 지정해보세요.
 let userName: string = 'Kim';
